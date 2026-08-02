@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="UI/UX 设计师个人作品集，展示产品界面、AIGC 视觉、移动端体验和 3D 探索。"
+    />
+    <meta name="theme-color" content="#070b0a" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yanzehao666.github.io/Portfolio/" />
+    <meta property="og:title" content="闫泽昊 | UI Designer Portfolio" />
+    <meta property="og:description" content="UI/UX 设计师个人作品集，展示产品界面、AIGC 视觉与移动端体验。" />
+    <meta property="og:image" content="https://yanzehao666.github.io/Portfolio/assets/share/portfolio-share-cover-1200x630.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="闫泽昊 | UI Designer Portfolio" />
+    <meta name="twitter:description" content="UI/UX 设计师个人作品集，展示产品界面、AIGC 视觉与移动端体验。" />
+    <meta name="twitter:image" content="https://yanzehao666.github.io/Portfolio/assets/share/portfolio-share-cover-1200x630.jpg" />
+    <title>闫泽昊 | UI Designer Portfolio</title>
+    <link rel="canonical" href="https://yanzehao666.github.io/Portfolio/" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
+    <link rel="stylesheet" href="./styles.css?v=20260802-2" />
+  </head>
+  <body>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <div class="bg-video-container" aria-hidden="true">
+      <video
+        class="bg-video bg-video-ambient"
+        src="./assets/hero-interactive/hero-background-ambient.webm"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        data-video-ambient
+      ></video>
+      <video
+        class="bg-video bg-video-main"
+        src="./assets/hero-interactive/hero-background-1080.mp4"
+        poster="./assets/hero-interactive/hero-background-poster.webp"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        data-video-slot
+      ></video>
+      <div class="bg-fallback"></div>
+    </div>
+    <div class="bg-overlay-left" aria-hidden="true"></div>
+    <div class="bg-overlay-bottom" aria-hidden="true"></div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <div class="center-glow" aria-hidden="true"></div>
+
+    <div class="site-shell" id="site-scroll">
+      <nav class="site-nav reveal-down" data-reveal-delay="80">
+        <a class="brand" href="#home" aria-label="Back to home">
+          <span class="brand-word" aria-hidden="true">
+            <span>Y</span><span>A</span><span>N</span>
+          </span>
+          <span class="brand-meta">
+            <span>Portfolio</span>
+            <i></i>
+          </span>
+        </a>
+
+        <button class="menu-button" type="button" aria-label="Open navigation" data-menu-button>
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-pill" data-nav>
+          <a href="#home">Home</a>
+          <a href="#about">About Me</a>
+          <a href="#projects">Project Show</a>
+          <a href="#more-works">Other Creations</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <main>
+        <section class="hero section" id="home">
+          <div class="hero-inner">
+            <div class="hero-title">
+              <h1 class="hero-name hero-name-art reveal-left" data-reveal-delay="220">
+                <img src="./assets/hero-brand/Portfolio.svg?v=20260802-1" alt="Portfolio" />
+              </h1>
+              <h2 class="hero-alias hero-alias-art reveal-right" data-reveal-delay="420">
+                <img src="./assets/hero-brand/YanZeHao.svg?v=20260730-2" alt="Yan Ze Hao" />
+              </h2>
+            </div>
+
+            <div class="hero-copy reveal-up" data-reveal-delay="620">
+              <i></i>
+              <p class="quote">"Seeking business logic in pixels, exploring the future of design in AI."</p>
+              <p class="role">UI / UX 设计师 • AIGC 探索者</p>
+              <div class="hero-actions">
+                <a class="button primary" href="#projects">Explore Projects</a>
+                <button class="button secondary" type="button" data-open-contact>Get in touch</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-strip reveal-fade" data-reveal-delay="900">
+            <div>
+              <span>Email</span>
+              <a href="mailto:1109992435@qq.com">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                  <path d="m3 7 8.1 5.15a1.7 1.7 0 0 0 1.8 0L21 7"></path>
+                </svg>
+                1109992435@qq.com
+              </a>
+            </div>
+            <div>
+              <span>Phone</span>
+              <a href="tel:+8613836068691" aria-label="拨打电话 +86 138 3606 8691">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6.6 3.8 9 3.2a1.5 1.5 0 0 1 1.75.86l1.1 2.55a1.5 1.5 0 0 1-.42 1.75L9.8 9.72a14.2 14.2 0 0 0 4.48 4.48l1.34-1.63a1.5 1.5 0 0 1 1.75-.42l2.55 1.1a1.5 1.5 0 0 1 .86 1.75l-.58 2.4a3 3 0 0 1-2.93 2.3C10.12 19.7 4.3 13.88 4.3 6.73A3 3 0 0 1 6.6 3.8Z"></path>
+                </svg>
+                +86 138 3606 8691
+              </a>
+            </div>
+            <div>
+              <span>WeChat</span>
+              <button class="contact-copy" type="button" data-copy-wechat data-copy-value="_Yovk-6" aria-label="复制微信号 _Yovk-6" title="点击复制微信号">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M13.6 11.2c0 3.1-2.8 5.6-6.3 5.6-.8 0-1.6-.1-2.3-.4l-2.6 1.3.7-2.3C1.8 14.4 1 13 1 11.2c0-3.1 2.8-5.6 6.3-5.6s6.3 2.5 6.3 5.6Z"></path>
+                  <path d="M10.7 15.1c.4 2.3 2.8 4 5.7 4 .7 0 1.4-.1 2-.3l2.3 1.1-.6-2c1.2-.9 1.9-2.1 1.9-3.5 0-2.7-2.5-4.8-5.6-4.8-1 0-2 .2-2.8.6"></path>
+                  <path d="M5.3 10.1h.01M9.3 10.1h.01M14.7 14h.01M18.2 14h.01"></path>
+                </svg>
+                _Yovk-6
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="about section" id="about">
+          <div class="section-heading reveal-left">
+            <span>/ 01</span>
+            <h2>ABOUT<br />ME</h2>
+          </div>
+
+          <div class="profile-stage reveal-up">
+            <article class="profile-card active">
+              <div class="profile-media profile-media-portrait">
+                <img src="./assets/about-me/portrait.png" alt="Portrait" />
+              </div>
+              <div class="profile-info">
+                <div>
+                  <h3>闫泽昊</h3>
+                  <span>Period</span>
+                </div>
+                <div>
+                  <p>UI / AIGC Designer</p>
+                  <b>EMPLOYED</b>
+                </div>
+                <i class="green"></i>
+              </div>
+            </article>
+            <article class="profile-card">
+              <div class="profile-media profile-media-logo">
+                <img src="./assets/about-me/fkw-logo.png" alt="凡科网" />
+              </div>
+              <div class="profile-info">
+                <div>
+                  <h3>凡科网</h3>
+                  <span>Period</span>
+                </div>
+                <div>
+                  <p>UI Designer</p>
+                  <b>2025 - NOW</b>
+                </div>
+                <i class="blue"></i>
+              </div>
+            </article>
+            <article class="profile-card">
+              <div class="profile-media profile-media-logo">
+                <img src="./assets/about-me/shuying-logo.png" alt="数应科技" />
+              </div>
+              <div class="profile-info">
+                <div>
+                  <h3>数应科技</h3>
+                  <span>Period</span>
+                </div>
+                <div>
+                  <p>UI Designer</p>
+                  <b>2024 - 2025</b>
+                </div>
+                <i class="yellow"></i>
+              </div>
+            </article>
+            <article class="profile-card">
+              <div class="profile-media profile-media-logo">
+                <img src="./assets/about-me/xianwei-logo.png" alt="先为科技" />
+              </div>
+              <div class="profile-info">
+                <div>
+                  <h3>先为科技</h3>
+                  <span>Period</span>
+                </div>
+                <div>
+                  <p>Visual Designer</p>
+                  <b>2023 - 2024</b>
+                </div>
+                <i class="red"></i>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="projects section" id="projects">
+          <div class="section-heading reveal-left">
+            <span>/ 02</span>
+            <h2>PROJECT<br />SHOW</h2>
+          </div>
+
+          <div class="project-list">
+            <article class="project-item reveal-row" tabindex="0">
+              <div class="project-row">
+                <span>01</span>
+                <h3>Business Website Design</h3>
+                <p>WEB</p>
+                <em>2025-2026</em>
+                <button class="project-arrow" type="button" data-open-project-detail data-project-detail="business-website" aria-label="打开 Business Website Design 完整作品">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7 7h10v10"></path>
+                    <path d="M7 17 17 7"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="project-preview">
+                <div class="project-preview-inner has-project-cover">
+                  <button class="project-media mobile-project-cover" type="button" data-open-project-detail data-project-detail="business-website" aria-label="打开 Business Website Design 完整作品">
+                    <img src="./assets/project-show/01-business-website-design/business-website-cover.webp" width="1280" height="720" alt="Business Website Design 项目顶部预览" loading="lazy" decoding="async" />
+                  </button>
+                  <div class="project-caption">
+                    <p>End-to-end design of independent B2B websites, from strategy and wireframes to polished UI delivery.</p>
+                    <button type="button" data-open-project-detail data-project-detail="business-website">View Details <span aria-hidden="true">↗</span></button>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="project-item reveal-row" tabindex="0">
+              <div class="project-row">
+                <span>03</span>
+                <h3>B2B Design</h3>
+                <p>To B</p>
+                <em>2024-2025</em>
+                <button class="project-arrow" type="button" data-open-project-detail data-project-detail="b2b-design" aria-label="打开 B2B Design 完整作品">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7 7h10v10"></path>
+                    <path d="M7 17 17 7"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="project-preview">
+                <div class="project-preview-inner has-project-cover">
+                  <button class="project-media mobile-project-cover" type="button" data-open-project-detail data-project-detail="b2b-design" aria-label="打开 B2B Design 完整作品">
+                    <img src="./assets/project-show/02-b2b-design/b2b-design-cover.webp" width="1280" height="720" alt="B2B Design 项目顶部预览" loading="lazy" decoding="async" />
+                  </button>
+                  <div class="project-caption">
+                    <p>Enterprise cloud service management platform design, covering dashboard, components and data pages.</p>
+                    <button type="button" data-open-project-detail data-project-detail="b2b-design">View Details <span aria-hidden="true">↗</span></button>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="project-item reveal-row" tabindex="0">
+              <div class="project-row">
+                <span>02</span>
+                <h3>Mobile APP Design</h3>
+                <p>APP UI/UX</p>
+                <em>2025-2026</em>
+                <button class="project-arrow" type="button" data-open-project-detail data-project-detail="mobile-app" aria-label="打开 Mobile APP Design 完整作品">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7 7h10v10"></path>
+                    <path d="M7 17 17 7"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="project-preview">
+                <div class="project-preview-inner has-project-cover">
+                  <button class="project-media mobile-project-cover" type="button" data-open-project-detail data-project-detail="mobile-app" aria-label="打开 Mobile APP Design 完整作品">
+                    <img src="./assets/project-show/03-mobile-app-design/mobile-app-cover.webp" width="1280" height="720" alt="Mobile APP Design 项目顶部预览" loading="lazy" decoding="async" />
+                  </button>
+                  <div class="project-caption">
+                    <p>Full-cycle mobile application design, including interaction flows and pixel-perfect interfaces.</p>
+                    <button type="button" data-open-project-detail data-project-detail="mobile-app">View Details <span aria-hidden="true">↗</span></button>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="project-item reveal-row" tabindex="0">
+              <div class="project-row">
+                <span>04</span>
+                <h3>AIGC Visual Exploration</h3>
+                <p>AIGC</p>
+                <em>2025-2026</em>
+                <button class="project-arrow" type="button" data-open-project-detail data-project-detail="visual-exploration" aria-label="打开 AIGC Visual Exploration 完整作品">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7 7h10v10"></path>
+                    <path d="M7 17 17 7"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="project-preview">
+                <div class="project-preview-inner has-project-cover">
+                  <button class="project-media mobile-project-cover" type="button" data-open-project-detail data-project-detail="visual-exploration" aria-label="打开 AIGC Visual Exploration 完整作品">
+                    <img src="./assets/project-show/04-aigc-visual-exploration/visual-exploration-cover.webp" width="1280" height="720" alt="AIGC Visual Exploration 项目顶部预览" loading="lazy" decoding="async" />
+                  </button>
+                  <div class="project-caption">
+                    <p>IP character visual exploration, including mascot design, emoji sets and campaign scenes.</p>
+                    <button type="button" data-open-project-detail data-project-detail="visual-exploration">View Details <span aria-hidden="true">↗</span></button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="more section" id="more-works">
+          <div class="more-head">
+            <div class="section-heading reveal-left">
+              <span>/ 03</span>
+              <h2>OTHER<br />CREATIONS</h2>
+            </div>
+            <p class="reveal-up">AI 视觉作品合集</p>
+          </div>
+
+          <div class="masonry-grid">
+            <button class="masonry-item media-work portrait-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/seedance-video-optimized.mp4" data-media-label="Seedance video creation" aria-label="Seedance video creation">
+              <video src="./assets/other-creations/seedance-video-optimized.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </button>
+            <button class="masonry-item media-work landscape-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/tab-icons-animation.gif" data-media-label="Tab icons animation" aria-label="Tab icons animation">
+              <img src="./assets/other-creations/tab-icons-animation.gif" alt="Tab icons animation" loading="lazy" decoding="async" />
+            </button>
+            <button class="masonry-item media-work wide-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/factory-building-animation.mp4" data-media-label="Factory building animation" aria-label="Factory building animation">
+              <video src="./assets/other-creations/factory-building-animation.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </button>
+            <button class="masonry-item media-work audio-login-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/audio-platform-login.png" data-media-label="Audio platform login page" aria-label="Audio platform login page">
+              <img src="./assets/other-creations/audio-platform-login.png" alt="Audio platform login page" loading="lazy" decoding="async" />
+            </button>
+            <button class="masonry-item empty-work tall reveal-zoom" type="button">Poster Slot</button>
+            <button class="masonry-item empty-work reveal-zoom" type="button">Image Slot</button>
+            <button class="masonry-item empty-work reveal-zoom" type="button">Image Slot</button>
+            <button class="masonry-item empty-work tall reveal-zoom" type="button">Video Slot</button>
+            <button class="masonry-item empty-work reveal-zoom" type="button">Image Slot</button>
+            <button class="masonry-item empty-work reveal-zoom" type="button">Image Slot</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="contact section" id="contact">
+        <div class="contact-top reveal-fade">
+          <div>
+            <span>/ 04</span>
+            <p>准备好开始下一个数字项目了吗？<br />给我发一封邮件，让我们一起创造令人惊艳的作品。</p>
+          </div>
+          <button class="button secondary" type="button" data-open-contact>Get in touch</button>
+        </div>
+
+        <div class="connect-title reveal-zoom">
+          <h2>LET'S</h2>
+          <h2>CONNECT</h2>
+        </div>
+
+        <div class="footer-line reveal-fade">
+          <p>© 2026 闫泽昊 / YAN. ALL RIGHTS RESERVED.</p>
+          <div>
+            <a href="mailto:1109992435@qq.com">Email</a>
+            <button class="footer-copy" type="button" data-copy-wechat data-copy-value="_Yovk-6">WeChat</button>
+            <a href="tel:+8613836068691">Phone</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <div class="project-detail-modal" data-project-detail-modal hidden role="dialog" aria-modal="true" aria-label="Project 完整作品">
+      <button class="project-detail-close" type="button" data-close-project-detail aria-label="关闭完整作品">×</button>
+      <div class="project-detail-panel">
+        <div class="project-detail-image">
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" data-modal hidden>
+      <div class="modal-panel">
+        <button class="modal-close" type="button" data-close-contact aria-label="Close">×</button>
+        <div class="modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="m3 7 8.1 5.15a1.7 1.7 0 0 0 1.8 0L21 7"></path>
+          </svg>
+        </div>
+        <h3>Let's Connect</h3>
+        <p>如果您有任何想法或合作意向，欢迎通过以下方式联系我。</p>
+        <div class="modal-contacts">
+          <a class="modal-contact" href="mailto:1109992435@qq.com">
+            <span class="modal-contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="m3 7 8.1 5.15a1.7 1.7 0 0 0 1.8 0L21 7"></path>
+              </svg>
+            </span>
+            <span class="modal-contact-copy">
+              <small>Email</small>
+              <strong>1109992435@qq.com</strong>
+            </span>
+          </a>
+          <a class="modal-contact" href="tel:+8613836068691" aria-label="拨打电话 +86 138 3606 8691">
+            <span class="modal-contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6.6 3.8 9 3.2a1.5 1.5 0 0 1 1.75.86l1.1 2.55a1.5 1.5 0 0 1-.42 1.75L9.8 9.72a14.2 14.2 0 0 0 4.48 4.48l1.34-1.63a1.5 1.5 0 0 1 1.75-.42l2.55 1.1a1.5 1.5 0 0 1 .86 1.75l-.58 2.4a3 3 0 0 1-2.93 2.3C10.12 19.7 4.3 13.88 4.3 6.73A3 3 0 0 1 6.6 3.8Z"></path>
+              </svg>
+            </span>
+            <span class="modal-contact-copy">
+              <small>Phone</small>
+              <strong>+86 138 3606 8691</strong>
+            </span>
+          </a>
+          <button class="modal-contact" type="button" data-copy-wechat data-copy-value="_Yovk-6" aria-label="复制微信号 _Yovk-6">
+            <span class="modal-contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M13.6 11.2c0 3.1-2.8 5.6-6.3 5.6-.8 0-1.6-.1-2.3-.4l-2.6 1.3.7-2.3C1.8 14.4 1 13 1 11.2c0-3.1 2.8-5.6 6.3-5.6s6.3 2.5 6.3 5.6Z"></path>
+                <path d="M10.7 15.1c.4 2.3 2.8 4 5.7 4 .7 0 1.4-.1 2-.3l2.3 1.1-.6-2c1.2-.9 1.9-2.1 1.9-3.5 0-2.7-2.5-4.8-5.6-4.8-1 0-2 .2-2.8.6"></path>
+              </svg>
+            </span>
+            <span class="modal-contact-copy">
+              <small>WeChat</small>
+              <strong>_Yovk-6</strong>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy-toast" data-copy-toast role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="./script.js?v=20260802-1"></script>
+  </body>
+</html>
