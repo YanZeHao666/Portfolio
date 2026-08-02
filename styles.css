@@ -244,6 +244,7 @@ button {
 
 .site-shell {
   height: 100vh;
+  height: 100dvh;
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -513,6 +514,7 @@ button {
 .section {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 120px 64px;
 }
 
@@ -1913,6 +1915,10 @@ button.modal-contact {
 }
 
 @media (max-width: 620px) {
+  .bg-video-ambient {
+    display: none;
+  }
+
   .bg-video-main {
     inset: 36vh auto auto 50%;
     width: 200vw;
@@ -2069,5 +2075,96 @@ button.modal-contact {
 
   .profile-stage {
     grid-template-columns: minmax(0, 280px);
+  }
+}
+
+@media (max-width: 620px) and (max-height: 720px) {
+  .site-nav {
+    padding: 14px 20px;
+  }
+
+  .nav-pill {
+    top: 64px;
+    right: 20px;
+  }
+
+  .hero {
+    justify-content: flex-start;
+    padding: 82px 20px 16px;
+  }
+
+  .hero-inner,
+  .hero-copy,
+  .hero-actions,
+  .hero-actions .button {
+    width: calc(100vw - 40px);
+    max-width: calc(100vw - 40px);
+  }
+
+  .hero-inner {
+    flex: none;
+  }
+
+  .hero-name-art {
+    width: min(70vw, 330px);
+  }
+
+  .hero-alias-art {
+    width: min(57vw, 310px);
+    margin-top: 8px;
+  }
+
+  .hero-copy {
+    margin-top: 18px;
+  }
+
+  .hero-copy i {
+    width: 46px;
+    margin-bottom: 12px;
+  }
+
+  .quote {
+    width: calc(100vw - 40px);
+    max-width: calc(100vw - 40px);
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .role {
+    margin-bottom: 14px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .hero-actions {
+    gap: 8px;
+  }
+
+  .hero-actions .button {
+    min-height: 42px;
+  }
+
+  .contact-strip {
+    gap: 10px;
+    margin-top: 14px;
+    padding-bottom: 10px;
+  }
+
+  .contact-strip span {
+    margin-bottom: 3px;
+    font-size: 9px;
+  }
+
+  .contact-strip a,
+  .contact-strip b,
+  .contact-strip .contact-copy {
+    gap: 7px;
+    font-size: 12px;
+  }
+
+  .contact-icon {
+    width: 15px;
+    height: 15px;
   }
 }

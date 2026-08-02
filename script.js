@@ -12,6 +12,7 @@ const projectDetailPanel = projectDetailModal?.querySelector(".project-detail-pa
 const projectDetailImage = projectDetailModal?.querySelector(".project-detail-image");
 const backgroundVideo = document.querySelector("[data-video-slot]");
 const ambientBackgroundVideo = document.querySelector("[data-video-ambient]");
+const mobileVideoQuery = window.matchMedia("(max-width: 620px)");
 const characterHeadSprites = Array.from(document.querySelectorAll(".character-head-sprite"));
 let backgroundAnimationFrame = null;
 let pointerX = window.innerWidth / 2;
@@ -111,13 +112,49 @@ const updateBackgroundFrame = () => {
   setHeadDirection(column, row);
 };
 
-backgroundVideo?.addEventListener("canplay", () => {
-  backgroundVideo.play().catch(() => {});
-  if (ambientBackgroundVideo) {
-    ambientBackgroundVideo.currentTime = backgroundVideo.currentTime;
-    ambientBackgroundVideo.play().catch(() => {});
+if (ambientBackgroundVideo) {
+  if (mobileVideoQuery.matches) {
+    ambientBackgroundVideo.pause();
+    ambientBackgroundVideo.removeAttribute("src");
+    ambientBackgroundVideo.load();
+  } else if (ambientBackgroundVideo.dataset.src) {
+    ambientBackgroundVideo.src = ambientBackgroundVideo.dataset.src;
+    ambientBackgroundVideo.load();
   }
+}
+
+const activeBackgroundVideos = () => [backgroundVideo, ambientBackgroundVideo].filter(
+  (video) => video && (video.currentSrc || video.getAttribute("src"))
+);
+
+const tryPlayBackgroundVideos = () => {
+  activeBackgroundVideos().forEach((video) => {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    const playback = video.play();
+    playback?.catch(() => {});
+  });
+};
+
+backgroundVideo?.addEventListener("canplay", () => {
+  if (ambientBackgroundVideo?.currentSrc) {
+    ambientBackgroundVideo.currentTime = backgroundVideo.currentTime;
+  }
+  tryPlayBackgroundVideos();
 });
+
+activeBackgroundVideos().forEach((video) => {
+  video.addEventListener("loadeddata", tryPlayBackgroundVideos);
+});
+
+window.addEventListener("pageshow", tryPlayBackgroundVideos);
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) tryPlayBackgroundVideos();
+});
+document.addEventListener("touchstart", tryPlayBackgroundVideos, { once: true, passive: true });
+document.addEventListener("pointerdown", tryPlayBackgroundVideos, { once: true, passive: true });
+tryPlayBackgroundVideos();
 
 window.addEventListener("mousemove", (event) => {
   pointerX = event.clientX;
