@@ -175,63 +175,6 @@ document.addEventListener("touchstart", tryPlayBackgroundVideos, { once: true, p
 document.addEventListener("pointerdown", tryPlayBackgroundVideos, { once: true, passive: true });
 tryPlayBackgroundVideos();
 
-const creationPreviewVideos = [...document.querySelectorAll("[data-preview-video]")];
-
-const prepareCreationPreview = (video) => {
-  if (video.currentSrc || video.getAttribute("src")) return;
-  const src = video.dataset.previewSrc;
-  if (!src) return;
-  video.src = src;
-  video.muted = true;
-  video.defaultMuted = true;
-  video.playsInline = true;
-  video.load();
-};
-
-const playCreationPreview = (video) => {
-  prepareCreationPreview(video);
-  const playback = video.play();
-  playback?.catch(() => {});
-};
-
-if ("IntersectionObserver" in window) {
-  const creationPreviewObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const video = entry.target;
-      video.dataset.previewInView = entry.isIntersecting ? "true" : "false";
-      if (entry.isIntersecting) {
-        playCreationPreview(video);
-      } else if (!video.paused) {
-        video.pause();
-      }
-    });
-  }, { rootMargin: "360px 0px", threshold: 0.01 });
-
-  creationPreviewVideos.forEach((video) => creationPreviewObserver.observe(video));
-} else {
-  creationPreviewVideos.forEach(playCreationPreview);
-}
-
-const resumeCreationPreviews = () => {
-  creationPreviewVideos.forEach((video) => {
-    if (video.dataset.previewInView === "true" || window.matchMedia("(max-width: 980px)").matches) {
-      playCreationPreview(video);
-    }
-  });
-};
-
-creationPreviewVideos.forEach((video) => {
-  video.addEventListener("canplay", () => {
-    if (video.dataset.previewInView === "true") playCreationPreview(video);
-  });
-});
-
-document.addEventListener("touchstart", resumeCreationPreviews, { passive: true });
-document.addEventListener("pointerdown", resumeCreationPreviews, { passive: true });
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) resumeCreationPreviews();
-});
-
 window.addEventListener("mousemove", (event) => {
   pointerX = event.clientX;
   pointerY = event.clientY;
