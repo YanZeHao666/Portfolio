@@ -185,6 +185,10 @@ button {
   z-index: 2;
 }
 
+.bg-mobile-motion {
+  display: none;
+}
+
 .bg-fallback {
   z-index: 0;
   opacity: 0.58;
@@ -1953,14 +1957,17 @@ button.modal-contact {
     animation: mobile-ambient-breathe 7s ease-in-out infinite alternate;
   }
 
-  .bg-fallback::after {
-    content: "";
+  .bg-mobile-motion {
+    display: block;
     position: absolute;
     top: 36vh;
     left: 50%;
+    z-index: 1;
     width: 200vw;
+    height: auto;
     aspect-ratio: 16 / 9;
-    background: url("./assets/hero-interactive/hero-background-poster.webp") center / contain no-repeat;
+    object-fit: contain;
+    object-position: center;
     opacity: .5;
     transform: translate3d(-50%, 0, 0);
     transition: opacity .7s ease;
@@ -1969,7 +1976,7 @@ button.modal-contact {
     mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
   }
 
-  .bg-video-container.video-is-playing .bg-fallback::after {
+  .bg-video-container.video-is-playing .bg-mobile-motion {
     opacity: 0;
   }
 

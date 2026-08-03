@@ -139,18 +139,21 @@ const tryPlayBackgroundVideos = () => {
 };
 
 const showPlayingBackgroundVideo = () => {
+  if ((backgroundVideo?.currentTime ?? 0) <= 0.08) return;
   backgroundVideo?.classList.add("is-playing");
   backgroundVideoContainer?.classList.add("video-is-playing");
 };
 
 const showAnimatedBackgroundFallback = () => {
-  if ((backgroundVideo?.currentTime ?? 0) > 0.08) return;
   backgroundVideo?.classList.remove("is-playing");
   backgroundVideoContainer?.classList.remove("video-is-playing");
 };
 
 backgroundVideo?.addEventListener("playing", showPlayingBackgroundVideo);
+backgroundVideo?.addEventListener("timeupdate", showPlayingBackgroundVideo);
 backgroundVideo?.addEventListener("pause", showAnimatedBackgroundFallback);
+backgroundVideo?.addEventListener("waiting", showAnimatedBackgroundFallback);
+backgroundVideo?.addEventListener("stalled", showAnimatedBackgroundFallback);
 backgroundVideo?.addEventListener("emptied", showAnimatedBackgroundFallback);
 
 backgroundVideo?.addEventListener("canplay", () => {
