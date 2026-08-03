@@ -12,6 +12,7 @@ const projectDetailPanel = projectDetailModal?.querySelector(".project-detail-pa
 const projectDetailImage = projectDetailModal?.querySelector(".project-detail-image");
 const backgroundVideo = document.querySelector("[data-video-slot]");
 const ambientBackgroundVideo = document.querySelector("[data-video-ambient]");
+const backgroundVideoContainer = document.querySelector(".bg-video-container");
 const mobileVideoQuery = window.matchMedia("(max-width: 620px)");
 const characterHeadSprites = Array.from(document.querySelectorAll(".character-head-sprite"));
 let backgroundAnimationFrame = null;
@@ -136,6 +137,21 @@ const tryPlayBackgroundVideos = () => {
     playback?.catch(() => {});
   });
 };
+
+const showPlayingBackgroundVideo = () => {
+  backgroundVideo?.classList.add("is-playing");
+  backgroundVideoContainer?.classList.add("video-is-playing");
+};
+
+const showAnimatedBackgroundFallback = () => {
+  if ((backgroundVideo?.currentTime ?? 0) > 0.08) return;
+  backgroundVideo?.classList.remove("is-playing");
+  backgroundVideoContainer?.classList.remove("video-is-playing");
+};
+
+backgroundVideo?.addEventListener("playing", showPlayingBackgroundVideo);
+backgroundVideo?.addEventListener("pause", showAnimatedBackgroundFallback);
+backgroundVideo?.addEventListener("emptied", showAnimatedBackgroundFallback);
 
 backgroundVideo?.addEventListener("canplay", () => {
   if (ambientBackgroundVideo?.currentSrc) {
