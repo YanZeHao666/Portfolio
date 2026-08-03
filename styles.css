@@ -2015,11 +2015,13 @@ button.modal-contact {
   }
 
   .hero {
-    padding-top: 112px;
+    padding-top: 120px;
+    padding-bottom: 44px;
   }
 
   .hero-inner {
     display: block;
+    flex: none;
     width: calc(100vw - 48px);
     max-width: calc(100vw - 48px);
   }
@@ -2054,7 +2056,7 @@ button.modal-contact {
   .hero-copy {
     width: calc(100vw - 48px);
     max-width: calc(100vw - 48px);
-    margin-top: 36px;
+    margin-top: 46px;
   }
 
   .quote {
@@ -2083,6 +2085,12 @@ button.modal-contact {
   .hero-actions .button {
     width: calc(100vw - 48px);
     max-width: calc(100vw - 48px);
+  }
+
+  .contact-strip {
+    gap: 22px;
+    margin-top: 36px;
+    padding-bottom: 22px;
   }
 
   .button {
@@ -2128,7 +2136,7 @@ button.modal-contact {
 
   .hero {
     justify-content: flex-start;
-    padding: 82px 20px 16px;
+    padding: 92px 20px 30px;
   }
 
   .hero-inner,
@@ -2153,30 +2161,30 @@ button.modal-contact {
   }
 
   .hero-copy {
-    margin-top: 18px;
+    margin-top: 30px;
   }
 
   .hero-copy i {
     width: 46px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
 
   .quote {
     width: calc(100vw - 40px);
     max-width: calc(100vw - 40px);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     font-size: 15px;
     line-height: 1.4;
   }
 
   .role {
-    margin-bottom: 14px;
+    margin-bottom: 20px;
     font-size: 11px;
     line-height: 1.45;
   }
 
   .hero-actions {
-    gap: 8px;
+    gap: 10px;
   }
 
   .hero-actions .button {
@@ -2184,9 +2192,9 @@ button.modal-contact {
   }
 
   .contact-strip {
-    gap: 10px;
-    margin-top: 14px;
-    padding-bottom: 10px;
+    gap: 16px;
+    margin-top: 28px;
+    padding-bottom: 16px;
   }
 
   .contact-strip span {
