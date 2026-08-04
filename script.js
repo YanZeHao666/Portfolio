@@ -362,18 +362,19 @@ document.querySelectorAll("[data-open-project-detail]").forEach((button) => {
   button.addEventListener("click", openProjectDetail);
 });
 
-const renderMediaDetail = (button) => {
-  if (!projectDetailImage) return;
-  const type = button.dataset.mediaType;
-  const src = mobileVideoQuery.matches && button.dataset.mediaMobileSrc
-    ? button.dataset.mediaMobileSrc
-    : button.dataset.mediaSrc;
-  const label = button.dataset.mediaLabel || button.getAttribute("aria-label") || "Other creation";
-  if (!src) return;
+const mediaVideoCache = new Map();
+const mediaDetailButtons = [...document.querySelectorAll("[data-open-media-detail]")];
 
-  if (type === "video") {
-    const video = document.createElement("video");
-    video.src = src;
+const resolveMediaSource = (button) => (
+  mobileVideoQuery.matches && button.dataset.mediaMobileSrc
+    ? button.dataset.mediaMobileSrc
+    : button.dataset.mediaSrc
+);
+
+const prepareMediaVideo = (button) => {
+  let video = mediaVideoCache.get(button);
+  if (!video) {
+    video = document.createElement("video");
     video.controls = true;
     video.autoplay = true;
     video.loop = true;
@@ -383,6 +384,32 @@ const renderMediaDetail = (button) => {
     video.preload = "auto";
     video.setAttribute("webkit-playsinline", "true");
     video.setAttribute("x5-playsinline", "true");
+    mediaVideoCache.set(button, video);
+  }
+  if (!video.currentSrc && !video.getAttribute("src")) {
+    video.src = resolveMediaSource(button);
+    video.load();
+  }
+  return video;
+};
+
+if (mobileVideoQuery.matches) {
+  window.setTimeout(() => {
+    mediaDetailButtons
+      .filter((button) => button.dataset.mediaType === "video")
+      .forEach(prepareMediaVideo);
+  }, 1800);
+}
+
+const renderMediaDetail = (button) => {
+  if (!projectDetailImage) return;
+  const type = button.dataset.mediaType;
+  const src = resolveMediaSource(button);
+  const label = button.dataset.mediaLabel || button.getAttribute("aria-label") || "Other creation";
+  if (!src) return;
+
+  if (type === "video") {
+    const video = prepareMediaVideo(button);
     video.setAttribute("aria-label", label);
     projectDetailImage.replaceChildren(video);
     const startPlayback = () => video.play().catch(() => {});
@@ -400,7 +427,7 @@ const renderMediaDetail = (button) => {
   projectDetailModal?.setAttribute("aria-label", label);
 };
 
-document.querySelectorAll("[data-open-media-detail]").forEach((button) => {
+mediaDetailButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.stopPropagation();
     if (!projectDetailModal) return;
