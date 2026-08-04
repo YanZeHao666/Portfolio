@@ -1952,7 +1952,7 @@ button.modal-contact {
 @media (max-width: 620px) {
   .section {
     padding: 170px 24px 76px;
-    scroll-margin-top: 190px;
+    scroll-margin-top: 360px;
   }
 
   .bg-video-ambient {
@@ -2194,6 +2194,8 @@ button.modal-contact {
   .masonry-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: dense;
+    grid-auto-rows: 8px;
     gap: 14px;
     column-count: initial;
   }
@@ -2208,8 +2210,31 @@ button.modal-contact {
     min-height: 0;
     height: auto;
     margin: 0;
-    aspect-ratio: 1 / .95;
+    aspect-ratio: auto;
+    grid-row: span 8;
     border-radius: 18px;
+  }
+
+  .masonry-item.media-work img,
+  .masonry-item.media-work video {
+    object-fit: contain;
+    background: rgba(3, 7, 18, .88);
+  }
+
+  .masonry-item.portrait-work {
+    grid-row: span 14;
+  }
+
+  .masonry-item.landscape-work {
+    grid-row: span 5;
+  }
+
+  .masonry-item.wide-work {
+    grid-row: span 5;
+  }
+
+  .masonry-item.audio-login-work {
+    grid-row: span 5;
   }
 
   .masonry-item[data-media-type="video"]::after {
