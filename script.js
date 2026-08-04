@@ -138,6 +138,19 @@ const tryPlayBackgroundVideos = () => {
   });
 };
 
+const loadMainBackgroundVideo = () => {
+  if (!backgroundVideo || backgroundVideo.currentSrc || backgroundVideo.getAttribute("src")) return;
+  const src = backgroundVideo.dataset.src;
+  if (!src) return;
+  backgroundVideo.src = src;
+  backgroundVideo.load();
+};
+
+const startBackgroundVideos = () => {
+  loadMainBackgroundVideo();
+  tryPlayBackgroundVideos();
+};
+
 const showPlayingBackgroundVideo = () => {
   if ((backgroundVideo?.currentTime ?? 0) <= 0.08) return;
   backgroundVideo?.classList.add("is-playing");
@@ -163,17 +176,17 @@ backgroundVideo?.addEventListener("canplay", () => {
   tryPlayBackgroundVideos();
 });
 
-activeBackgroundVideos().forEach((video) => {
+[backgroundVideo, ambientBackgroundVideo].filter(Boolean).forEach((video) => {
   video.addEventListener("loadeddata", tryPlayBackgroundVideos);
 });
 
-window.addEventListener("pageshow", tryPlayBackgroundVideos);
+window.addEventListener("pageshow", startBackgroundVideos);
 document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) tryPlayBackgroundVideos();
+  if (!document.hidden) startBackgroundVideos();
 });
-document.addEventListener("touchstart", tryPlayBackgroundVideos, { once: true, passive: true });
-document.addEventListener("pointerdown", tryPlayBackgroundVideos, { once: true, passive: true });
-tryPlayBackgroundVideos();
+document.addEventListener("touchstart", startBackgroundVideos, { once: true, passive: true });
+document.addEventListener("pointerdown", startBackgroundVideos, { once: true, passive: true });
+window.setTimeout(startBackgroundVideos, mobileVideoQuery.matches ? 900 : 180);
 
 window.addEventListener("mousemove", (event) => {
   pointerX = event.clientX;
@@ -191,13 +204,15 @@ const revealObserver = new IntersectionObserver(
   },
   {
     root: scroller,
-    threshold: 0.12,
+    threshold: mobileVideoQuery.matches ? 0.08 : 0.12,
   }
 );
 
 reveals.forEach((element, index) => {
   const requestedDelay = Number.parseInt(element.dataset.revealDelay ?? "", 10);
-  const delay = Number.isFinite(requestedDelay) ? requestedDelay : Math.min(index * 35, 260);
+  const delay = Number.isFinite(requestedDelay)
+    ? requestedDelay
+    : Math.min(index * (mobileVideoQuery.matches ? 20 : 35), mobileVideoQuery.matches ? 160 : 260);
   element.style.transitionDelay = `${delay}ms`;
   revealObserver.observe(element);
 });

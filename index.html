@@ -24,7 +24,7 @@
     <link rel="canonical" href="https://yanzehao666.github.io/Portfolio/" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
-    <link rel="stylesheet" href="./styles.css?v=20260803-8" />
+    <link rel="stylesheet" href="./styles.css?v=20260804-1" />
   </head>
   <body>
     <div class="cursor-glow" aria-hidden="true"></div>
@@ -44,7 +44,7 @@
       ></video>
       <video
         class="bg-video bg-video-main"
-        src="./assets/hero-interactive/hero-background-1080.mp4"
+        data-src="./assets/hero-interactive/hero-background-1080.mp4"
         poster="./assets/hero-interactive/hero-background-poster.webp"
         autoplay
         muted
@@ -53,12 +53,12 @@
         webkit-playsinline
         x5-playsinline="true"
         x5-video-player-type="h5-page"
-        preload="auto"
+        preload="none"
         data-video-slot
       ></video>
       <img
         class="bg-mobile-motion"
-        src="./assets/hero-interactive/hero-background-mobile.webp"
+        src="./assets/hero-interactive/hero-background-poster.webp?v=20260804-1"
         alt=""
         aria-hidden="true"
         fetchpriority="high"
@@ -100,15 +100,15 @@
         <section class="hero section" id="home">
           <div class="hero-inner">
             <div class="hero-title">
-              <h1 class="hero-name hero-name-art reveal-left" data-reveal-delay="220">
+              <h1 class="hero-name hero-name-art reveal-left" data-reveal-delay="160">
                 <img src="./assets/hero-brand/Portfolio.svg?v=20260802-1" alt="Portfolio" />
               </h1>
-              <h2 class="hero-alias hero-alias-art reveal-right" data-reveal-delay="420">
+              <h2 class="hero-alias hero-alias-art reveal-right" data-reveal-delay="280">
                 <img src="./assets/hero-brand/YanZeHao.svg?v=20260730-2" alt="Yan Ze Hao" />
               </h2>
             </div>
 
-            <div class="hero-copy reveal-up" data-reveal-delay="620">
+            <div class="hero-copy reveal-up" data-reveal-delay="440">
               <i></i>
               <p class="quote">"Seeking business logic in pixels, exploring the future of design in AI."</p>
               <p class="role">UI / UX 设计师 • AIGC 探索者</p>
@@ -119,7 +119,7 @@
             </div>
           </div>
 
-          <div class="contact-strip reveal-fade" data-reveal-delay="900">
+          <div class="contact-strip reveal-fade" data-reveal-delay="660">
             <div>
               <span>Email</span>
               <a href="mailto:1109992435@qq.com">
@@ -348,13 +348,13 @@
 
           <div class="masonry-grid">
             <button class="masonry-item media-work portrait-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/seedance-video-optimized.mp4" data-media-label="Seedance video creation" aria-label="Seedance video creation">
-              <img src="./assets/other-creations/seedance-preview.webp?v=20260803-8" alt="Seedance video preview" loading="eager" fetchpriority="low" decoding="async" />
+              <img src="./assets/other-creations/seedance-poster.webp?v=20260804-1" alt="Seedance video preview" loading="lazy" decoding="async" />
             </button>
             <button class="masonry-item media-work landscape-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/tab-icons-animation.gif" data-media-label="Tab icons animation" aria-label="Tab icons animation">
               <img src="./assets/other-creations/tab-icons-animation.gif" alt="Tab icons animation" loading="lazy" decoding="async" />
             </button>
             <button class="masonry-item media-work wide-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/factory-building-animation.mp4" data-media-label="Factory building animation" aria-label="Factory building animation">
-              <img src="./assets/other-creations/factory-preview.webp?v=20260803-8" alt="Factory building animation preview" loading="eager" fetchpriority="low" decoding="async" />
+              <img src="./assets/other-creations/factory-poster.webp?v=20260804-1" alt="Factory building animation preview" loading="lazy" decoding="async" />
             </button>
             <button class="masonry-item media-work audio-login-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/audio-platform-login.png" data-media-label="Audio platform login page" aria-label="Audio platform login page">
               <img src="./assets/other-creations/audio-platform-login.png" alt="Audio platform login page" loading="lazy" decoding="async" />
@@ -455,6 +455,6 @@
 
     <div class="copy-toast" data-copy-toast role="status" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="./script.js?v=20260803-8"></script>
+    <script src="./script.js?v=20260804-1"></script>
   </body>
 </html>
