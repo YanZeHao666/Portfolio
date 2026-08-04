@@ -365,7 +365,9 @@ document.querySelectorAll("[data-open-project-detail]").forEach((button) => {
 const renderMediaDetail = (button) => {
   if (!projectDetailImage) return;
   const type = button.dataset.mediaType;
-  const src = button.dataset.mediaSrc;
+  const src = mobileVideoQuery.matches && button.dataset.mediaMobileSrc
+    ? button.dataset.mediaMobileSrc
+    : button.dataset.mediaSrc;
   const label = button.dataset.mediaLabel || button.getAttribute("aria-label") || "Other creation";
   if (!src) return;
 
@@ -375,9 +377,18 @@ const renderMediaDetail = (button) => {
     video.controls = true;
     video.autoplay = true;
     video.loop = true;
+    video.muted = true;
+    video.defaultMuted = true;
     video.playsInline = true;
+    video.preload = "auto";
+    video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("x5-playsinline", "true");
     video.setAttribute("aria-label", label);
     projectDetailImage.replaceChildren(video);
+    const startPlayback = () => video.play().catch(() => {});
+    video.addEventListener("loadeddata", startPlayback, { once: true });
+    video.addEventListener("canplay", startPlayback, { once: true });
+    startPlayback();
   } else {
     const img = document.createElement("img");
     img.src = src;
