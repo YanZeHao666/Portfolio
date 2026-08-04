@@ -1237,6 +1237,38 @@ button {
   object-position: center;
 }
 
+.masonry-item.media-work .creation-preview-video,
+.masonry-item.media-work .creation-preview-poster {
+  position: absolute;
+  inset: 0;
+}
+
+.masonry-item.media-work .creation-preview-poster {
+  z-index: 2;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
+.masonry-item.media-work .creation-preview-video.is-preview-playing + .creation-preview-poster {
+  opacity: 0;
+}
+
+.creation-preview-video {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.creation-preview-video::-webkit-media-controls,
+.creation-preview-video::-webkit-media-controls-panel,
+.creation-preview-video::-webkit-media-controls-play-button,
+.creation-preview-video::-webkit-media-controls-start-playback-button,
+.creation-preview-video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0;
+}
+
 .masonry-item.portrait-work {
   aspect-ratio: 9 / 16;
   min-height: 0;

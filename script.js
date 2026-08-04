@@ -401,6 +401,8 @@ const startCreationPreview = (video) => {
   }
   video.muted = true;
   video.defaultMuted = true;
+  video.controls = false;
+  video.removeAttribute("controls");
   video.playsInline = true;
   video.play().catch(() => {});
 };
@@ -424,6 +426,10 @@ const creationPreviewObserver = new IntersectionObserver(
 
 creationPreviewVideos.forEach((video) => {
   creationPreviewObserver.observe(video);
+  video.addEventListener("playing", () => video.classList.add("is-preview-playing"));
+  ["pause", "waiting", "stalled", "emptied"].forEach((eventName) => {
+    video.addEventListener(eventName, () => video.classList.remove("is-preview-playing"));
+  });
   video.addEventListener("loadeddata", () => {
     if (!document.hidden) startCreationPreview(video);
   });
