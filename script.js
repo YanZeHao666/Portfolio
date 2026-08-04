@@ -401,6 +401,48 @@ if (mobileVideoQuery.matches) {
   }, 1800);
 }
 
+const creationPreviewVideos = [...document.querySelectorAll(".creation-preview-video")];
+const startCreationPreview = (video) => {
+  if (!video.getAttribute("src") && video.dataset.previewSrc) {
+    video.src = video.dataset.previewSrc;
+    video.load();
+  }
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.play().catch(() => {});
+};
+
+const creationPreviewObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        startCreationPreview(entry.target);
+      } else {
+        entry.target.pause();
+      }
+    });
+  },
+  {
+    root: scroller,
+    rootMargin: "35% 0px",
+    threshold: 0.05,
+  }
+);
+
+creationPreviewVideos.forEach((video) => {
+  creationPreviewObserver.observe(video);
+  video.addEventListener("loadeddata", () => {
+    if (!document.hidden) startCreationPreview(video);
+  });
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    creationPreviewVideos.forEach((video) => video.pause());
+  }
+});
+
 const renderMediaDetail = (button) => {
   if (!projectDetailImage) return;
   const type = button.dataset.mediaType;
