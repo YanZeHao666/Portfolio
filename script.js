@@ -393,14 +393,6 @@ const prepareMediaVideo = (button) => {
   return video;
 };
 
-if (mobileVideoQuery.matches) {
-  window.setTimeout(() => {
-    mediaDetailButtons
-      .filter((button) => button.dataset.mediaType === "video")
-      .forEach(prepareMediaVideo);
-  }, 1800);
-}
-
 const creationPreviewVideos = [...document.querySelectorAll(".creation-preview-video")];
 const startCreationPreview = (video) => {
   if (!video.getAttribute("src") && video.dataset.previewSrc) {
