@@ -1228,32 +1228,6 @@ button {
     rgba(7, 10, 14, .68);
 }
 
-.masonry-item[data-media-type="video"]::after {
-  content: "▶";
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  padding-left: 2px;
-  border: 1px solid rgba(255,255,255,.48);
-  border-radius: 50%;
-  background: rgba(5, 12, 27, .58);
-  box-shadow: 0 10px 26px rgba(0,0,0,.28);
-  backdrop-filter: blur(10px);
-  color: rgba(255,255,255,.94);
-  font-size: 12px;
-  pointer-events: none;
-  transition: transform .35s ease, background-color .35s ease;
-}
-
-.masonry-item[data-media-type="video"]:hover::after {
-  transform: scale(1.08);
-  background-color: rgba(37, 99, 235, .68);
-}
-
 .masonry-item.media-work img,
 .masonry-item.media-work video {
   display: block;
@@ -2222,27 +2196,27 @@ button.modal-contact {
   }
 
   .masonry-item.portrait-work {
+    aspect-ratio: 9 / 16;
+    align-self: start;
     grid-row: span 14;
   }
 
   .masonry-item.landscape-work {
+    aspect-ratio: 16 / 9;
+    align-self: start;
     grid-row: span 5;
   }
 
   .masonry-item.wide-work {
+    aspect-ratio: 2 / 1;
+    align-self: start;
     grid-row: span 5;
   }
 
   .masonry-item.audio-login-work {
+    aspect-ratio: 12 / 7;
+    align-self: start;
     grid-row: span 5;
-  }
-
-  .masonry-item[data-media-type="video"]::after {
-    right: 12px;
-    bottom: 12px;
-    width: 34px;
-    height: 34px;
-    font-size: 10px;
   }
 
   .reveal-left,
