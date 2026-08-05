@@ -1293,6 +1293,12 @@ button {
   height: auto;
 }
 
+.masonry-item.banner-aigc-work {
+  aspect-ratio: 64 / 45;
+  min-height: 0;
+  height: auto;
+}
+
 .masonry-item.tall {
   height: 380px;
 }
@@ -2300,6 +2306,12 @@ button.modal-contact {
     aspect-ratio: 12 / 7;
     align-self: start;
     grid-row: span 5;
+  }
+
+  .masonry-item.banner-aigc-work {
+    aspect-ratio: 64 / 45;
+    align-self: start;
+    grid-row: span 6;
   }
 
   .reveal-left,
