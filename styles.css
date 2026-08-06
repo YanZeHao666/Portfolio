@@ -1311,6 +1311,18 @@ button {
   height: auto;
 }
 
+.masonry-item.festival-ui-video-work {
+  aspect-ratio: 9 / 16;
+  min-height: 0;
+  height: auto;
+}
+
+.masonry-item.festival-result-work {
+  aspect-ratio: 25 / 56;
+  min-height: 0;
+  height: auto;
+}
+
 .masonry-item.tall {
   height: 380px;
 }
@@ -2336,6 +2348,18 @@ button.modal-contact {
     aspect-ratio: 160 / 71;
     align-self: start;
     grid-row: span 4;
+  }
+
+  .masonry-item.festival-ui-video-work {
+    aspect-ratio: 9 / 16;
+    align-self: start;
+    grid-row: span 14;
+  }
+
+  .masonry-item.festival-result-work {
+    aspect-ratio: 25 / 56;
+    align-self: start;
+    grid-row: span 18;
   }
 
   .reveal-left,
