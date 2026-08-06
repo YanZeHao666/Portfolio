@@ -1207,6 +1207,18 @@ button {
   column-gap: 24px;
 }
 
+.creation-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0 0 24px;
+  break-inside: avoid;
+}
+
+.creation-stack .masonry-item {
+  margin: 0;
+}
+
 .masonry-item {
   width: 100%;
   min-height: 240px;
@@ -2285,6 +2297,10 @@ button.modal-contact {
     grid-auto-rows: 8px;
     gap: 14px;
     column-count: initial;
+  }
+
+  .creation-stack {
+    display: contents;
   }
 
   .masonry-item,
