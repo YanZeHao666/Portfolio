@@ -1299,6 +1299,18 @@ button {
   height: auto;
 }
 
+.masonry-item.travel-icons-work {
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  height: auto;
+}
+
+.masonry-item.empty-state-icons-work {
+  aspect-ratio: 160 / 71;
+  min-height: 0;
+  height: auto;
+}
+
 .masonry-item.tall {
   height: 380px;
 }
@@ -2312,6 +2324,18 @@ button.modal-contact {
     aspect-ratio: 64 / 45;
     align-self: start;
     grid-row: span 6;
+  }
+
+  .masonry-item.travel-icons-work {
+    aspect-ratio: 4 / 3;
+    align-self: start;
+    grid-row: span 7;
+  }
+
+  .masonry-item.empty-state-icons-work {
+    aspect-ratio: 160 / 71;
+    align-self: start;
+    grid-row: span 4;
   }
 
   .reveal-left,
