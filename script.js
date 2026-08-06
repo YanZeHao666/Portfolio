@@ -323,6 +323,40 @@ document.querySelectorAll(".masonry-item").forEach((item) => {
   });
 });
 
+const mobileMasonryQuery = window.matchMedia("(max-width: 620px)");
+const masonryGrid = document.querySelector(".masonry-grid");
+let masonryResizeFrame = 0;
+
+const layoutMobileMasonry = () => {
+  if (!masonryGrid) return;
+  const items = masonryGrid.querySelectorAll(".masonry-item");
+  if (!mobileMasonryQuery.matches) {
+    items.forEach((item) => item.style.removeProperty("grid-row"));
+    return;
+  }
+
+  const styles = window.getComputedStyle(masonryGrid);
+  const rowHeight = Number.parseFloat(styles.gridAutoRows) || 8;
+  const rowGap = Number.parseFloat(styles.rowGap) || 14;
+  items.forEach((item) => {
+    const span = Math.max(1, Math.ceil((item.offsetHeight + rowGap) / (rowHeight + rowGap)));
+    item.style.gridRow = `auto / span ${span}`;
+  });
+};
+
+const scheduleMobileMasonryLayout = () => {
+  window.cancelAnimationFrame(masonryResizeFrame);
+  masonryResizeFrame = window.requestAnimationFrame(layoutMobileMasonry);
+};
+
+scheduleMobileMasonryLayout();
+window.addEventListener("load", scheduleMobileMasonryLayout, { once: true });
+window.addEventListener("resize", scheduleMobileMasonryLayout, { passive: true });
+masonryGrid?.querySelectorAll("img, video").forEach((media) => {
+  media.addEventListener("load", scheduleMobileMasonryLayout, { once: true });
+  media.addEventListener("loadedmetadata", scheduleMobileMasonryLayout, { once: true });
+});
+
 document.querySelectorAll(".project-item").forEach((item) => {
   item.addEventListener("click", (event) => {
     if (event.target.closest("button")) return;
