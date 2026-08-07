@@ -24,7 +24,7 @@
     <link rel="canonical" href="https://yanzehao666.github.io/Portfolio/" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
-    <link rel="stylesheet" href="./styles.css?v=20260807-1" />
+    <link rel="stylesheet" href="./styles.css?v=20260807-2" />
   </head>
   <body>
     <div class="cursor-glow" aria-hidden="true"></div>
@@ -45,7 +45,7 @@
       <video
         class="bg-video bg-video-main"
         data-src="./assets/hero-interactive/hero-background-1080.mp4"
-        poster="./assets/hero-interactive/hero-background-poster.webp"
+        data-mobile-src="./assets/hero-interactive/hero-background-mobile.mp4"
         autoplay
         muted
         loop
@@ -58,7 +58,7 @@
       ></video>
       <img
         class="bg-mobile-motion"
-        src="./assets/hero-interactive/hero-background-poster.webp?v=20260804-1"
+        data-src="./assets/hero-interactive/hero-background-poster.webp?v=20260804-1"
         alt=""
         aria-hidden="true"
         fetchpriority="high"
@@ -166,7 +166,7 @@
           <div class="profile-stage reveal-up">
             <article class="profile-card active">
               <div class="profile-media profile-media-portrait">
-                <img src="./assets/about-me/portrait.png" alt="Portrait" />
+                <img src="./assets/about-me/portrait.webp" alt="Portrait" loading="lazy" decoding="async" />
               </div>
               <div class="profile-info">
                 <div>
@@ -182,7 +182,7 @@
             </article>
             <article class="profile-card">
               <div class="profile-media profile-media-logo">
-                <img src="./assets/about-me/fkw-logo.png" alt="凡科网" />
+                <img src="./assets/about-me/fkw-logo.webp" alt="凡科网" loading="lazy" decoding="async" />
               </div>
               <div class="profile-info">
                 <div>
@@ -198,7 +198,7 @@
             </article>
             <article class="profile-card">
               <div class="profile-media profile-media-logo">
-                <img src="./assets/about-me/shuying-logo.png" alt="数应科技" />
+                <img src="./assets/about-me/shuying-logo.webp" alt="数应科技" loading="lazy" decoding="async" />
               </div>
               <div class="profile-info">
                 <div>
@@ -214,7 +214,7 @@
             </article>
             <article class="profile-card">
               <div class="profile-media profile-media-logo">
-                <img src="./assets/about-me/xianwei-logo.png" alt="先为科技" />
+                <img src="./assets/about-me/xianwei-logo.webp" alt="先为科技" loading="lazy" decoding="async" />
               </div>
               <div class="profile-info">
                 <div>
@@ -352,21 +352,21 @@
 
           <div class="masonry-grid">
             <button class="masonry-item media-work wide-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/factory-building-animation.mp4" data-media-mobile-src="./assets/other-creations/factory-preview.mp4" data-media-label="Factory building animation" aria-label="Factory building animation">
-              <video class="creation-preview-video" data-preview-src="./assets/other-creations/factory-preview.mp4" poster="./assets/other-creations/factory-poster.webp?v=20260804-1" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Factory building animation preview"></video>
+              <video class="creation-preview-video" data-preview-src="./assets/other-creations/factory-preview.mp4" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Factory building animation preview"></video>
               <img class="creation-preview-poster" src="./assets/other-creations/factory-poster.webp?v=20260804-1" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </button>
             <button class="masonry-item media-work landscape-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/tab-icons-animation.gif" data-media-label="Tab icons animation" aria-label="Tab icons animation">
               <img src="./assets/other-creations/tab-icons-animation.gif" alt="Tab icons animation" loading="lazy" decoding="async" />
             </button>
-            <button class="masonry-item media-work portrait-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/seedance-video-optimized.mp4" data-media-mobile-src="./assets/other-creations/seedance-preview.mp4" data-media-label="Seedance video creation" aria-label="Seedance video creation">
-              <video class="creation-preview-video" data-preview-src="./assets/other-creations/seedance-preview.mp4" poster="./assets/other-creations/seedance-poster.webp?v=20260804-1" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Seedance video preview"></video>
+            <button class="masonry-item media-work portrait-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/seedance-video.mp4" data-media-mobile-src="./assets/other-creations/seedance-preview.mp4" data-media-label="Seedance video creation" aria-label="Seedance video creation">
+              <video class="creation-preview-video" data-preview-src="./assets/other-creations/seedance-preview.mp4" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Seedance video preview"></video>
               <img class="creation-preview-poster" src="./assets/other-creations/seedance-poster.webp?v=20260804-1" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </button>
-            <button class="masonry-item media-work audio-login-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/audio-platform-login.png" data-media-label="Audio platform login page" aria-label="Audio platform login page">
-              <img src="./assets/other-creations/audio-platform-login.png" alt="Audio platform login page" loading="lazy" decoding="async" />
+            <button class="masonry-item media-work audio-login-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/audio-platform-login.webp" data-media-label="Audio platform login page" aria-label="Audio platform login page">
+              <img src="./assets/other-creations/audio-platform-login.webp" alt="Audio platform login page" loading="lazy" decoding="async" />
             </button>
             <button class="masonry-item media-work banner-aigc-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/city-trend-market.mp4" data-media-mobile-src="./assets/other-creations/city-trend-market.mp4" data-media-label="City trend market AIGC banner" aria-label="City trend market AIGC banner">
-              <video class="creation-preview-video" data-preview-src="./assets/other-creations/city-trend-market.mp4" poster="./assets/other-creations/city-trend-market-poster.webp" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="City trend market AIGC banner preview"></video>
+              <video class="creation-preview-video" data-preview-src="./assets/other-creations/city-trend-market-preview.mp4" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="City trend market AIGC banner preview"></video>
               <img class="creation-preview-poster" src="./assets/other-creations/city-trend-market-poster.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </button>
             <button class="masonry-item media-work travel-icons-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/travel-icons-pastel.webp" data-media-label="Pastel travel icon collection" aria-label="Pastel travel icon collection">
@@ -376,12 +376,12 @@
               <img src="./assets/other-creations/empty-state-icons.webp" alt="Blue empty state icon collection" loading="lazy" decoding="async" />
             </button>
             <button class="masonry-item media-work festival-ui-video-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/mid-autumn-ui-animation.mp4" data-media-mobile-src="./assets/other-creations/mid-autumn-ui-animation.mp4" data-media-label="Mid-Autumn campaign UI animation" aria-label="Mid-Autumn campaign UI animation">
-              <video class="creation-preview-video" data-preview-src="./assets/other-creations/mid-autumn-ui-animation.mp4" poster="./assets/other-creations/mid-autumn-ui-poster.webp" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Mid-Autumn campaign UI animation preview"></video>
+              <video class="creation-preview-video" data-preview-src="./assets/other-creations/mid-autumn-ui-preview.mp4" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Mid-Autumn campaign UI animation preview"></video>
               <img class="creation-preview-poster" src="./assets/other-creations/mid-autumn-ui-poster.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
             </button>
             <div class="creation-stack">
               <button class="masonry-item media-work landscape-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/floating-screens-animation.mp4" data-media-mobile-src="./assets/other-creations/floating-screens-animation.mp4" data-media-label="Creative studio screens animation" aria-label="Creative studio screens animation">
-                <video class="creation-preview-video" data-preview-src="./assets/other-creations/floating-screens-animation.mp4" poster="./assets/other-creations/floating-screens-poster.webp" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Creative studio screens animation preview"></video>
+                <video class="creation-preview-video" data-preview-src="./assets/other-creations/floating-screens-preview.mp4" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Creative studio screens animation preview"></video>
                 <img class="creation-preview-poster" src="./assets/other-creations/floating-screens-poster.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
               </button>
               <button class="masonry-item media-work festival-result-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/mid-autumn-reward.webp" data-media-label="Mid-Autumn campaign reward result" aria-label="Mid-Autumn campaign reward result">
@@ -390,7 +390,7 @@
             </div>
             <div class="creation-stack">
               <button class="masonry-item media-work landscape-work reveal-zoom" type="button" data-open-media-detail data-media-type="video" data-media-src="./assets/other-creations/character-screens-animation.mp4" data-media-mobile-src="./assets/other-creations/character-screens-animation.mp4" data-media-label="Character and interface screens animation" aria-label="Character and interface screens animation">
-                <video class="creation-preview-video" data-preview-src="./assets/other-creations/character-screens-animation.mp4" poster="./assets/other-creations/character-screens-poster.webp" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Character and interface screens animation preview"></video>
+                <video class="creation-preview-video" data-preview-src="./assets/other-creations/character-screens-preview.mp4" autoplay muted loop playsinline webkit-playsinline preload="none" aria-label="Character and interface screens animation preview"></video>
                 <img class="creation-preview-poster" src="./assets/other-creations/character-screens-poster.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />
               </button>
               <button class="masonry-item media-work festival-result-work reveal-zoom" type="button" data-open-media-detail data-media-type="image" data-media-src="./assets/other-creations/mid-autumn-success.webp" data-media-label="Mid-Autumn campaign success result" aria-label="Mid-Autumn campaign success result">
@@ -487,6 +487,6 @@
 
     <div class="copy-toast" data-copy-toast role="status" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="./script.js?v=20260806-7"></script>
+    <script src="./script.js?v=20260807-1"></script>
   </body>
 </html>

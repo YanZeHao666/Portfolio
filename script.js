@@ -13,6 +13,7 @@ const projectDetailImage = projectDetailModal?.querySelector(".project-detail-im
 const backgroundVideo = document.querySelector("[data-video-slot]");
 const ambientBackgroundVideo = document.querySelector("[data-video-ambient]");
 const backgroundVideoContainer = document.querySelector(".bg-video-container");
+const mobileBackgroundPoster = document.querySelector(".bg-mobile-motion");
 const mobileVideoQuery = window.matchMedia("(max-width: 620px)");
 const characterHeadSprites = Array.from(document.querySelectorAll(".character-head-sprite"));
 let backgroundAnimationFrame = null;
@@ -124,6 +125,10 @@ if (ambientBackgroundVideo) {
   }
 }
 
+if (mobileBackgroundPoster && mobileVideoQuery.matches && mobileBackgroundPoster.dataset.src) {
+  mobileBackgroundPoster.src = mobileBackgroundPoster.dataset.src;
+}
+
 const activeBackgroundVideos = () => [backgroundVideo, ambientBackgroundVideo].filter(
   (video) => video && (video.currentSrc || video.getAttribute("src"))
 );
@@ -140,7 +145,9 @@ const tryPlayBackgroundVideos = () => {
 
 const loadMainBackgroundVideo = () => {
   if (!backgroundVideo || backgroundVideo.currentSrc || backgroundVideo.getAttribute("src")) return;
-  const src = backgroundVideo.dataset.src;
+  const src = mobileVideoQuery.matches && backgroundVideo.dataset.mobileSrc
+    ? backgroundVideo.dataset.mobileSrc
+    : backgroundVideo.dataset.src;
   if (!src) return;
   backgroundVideo.src = src;
   backgroundVideo.load();

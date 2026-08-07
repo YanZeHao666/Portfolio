@@ -2065,6 +2065,7 @@ button.modal-contact {
 
   .bg-fallback {
     animation: mobile-ambient-breathe 7s ease-in-out infinite alternate;
+    background: linear-gradient(120deg, rgba(7, 11, 10, .72), rgba(16, 28, 55, .36));
   }
 
   .bg-mobile-motion {
