@@ -1,11 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#93c5fd"/>
-      <stop offset=".5" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#c084fc"/>
+    <linearGradient id="yan-gradient" x1="9" y1="9" x2="52" y2="55" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#58E8FF"/>
+      <stop offset=".48" stop-color="#6F8CFF"/>
+      <stop offset="1" stop-color="#C86CFF"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="16" fill="#07101f"/>
-  <path d="M13 15h10l9 15 9-15h10L37 38v11H27V38L13 15Z" fill="url(#g)"/>
+  <path
+    d="M7 9h14.5L32 25.4 42.5 9H57L39.2 36.2V55H24.8V36.2L7 9Z"
+    fill="url(#yan-gradient)"
+    stroke="#07101F"
+    stroke-width="2.2"
+    stroke-linejoin="round"
+    paint-order="stroke fill"
+  />
+  <path d="M9.5 11.2h10.7L31.9 29l-5.4 8.3L9.5 11.2Z" fill="#B9F5FF" opacity=".24"/>
 </svg>
