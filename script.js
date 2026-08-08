@@ -435,52 +435,108 @@ const prepareMediaVideo = (button) => {
 };
 
 const creationPreviewVideos = [...document.querySelectorAll(".creation-preview-video")];
-const startCreationPreview = (video) => {
+const activeCreationPreviews = new WeakSet();
+
+const prepareCreationPreview = (video) => {
   if (!video.getAttribute("src") && video.dataset.previewSrc) {
     video.src = video.dataset.previewSrc;
+    video.preload = "auto";
+    video.setAttribute("preload", "auto");
     video.load();
   }
   video.muted = true;
   video.defaultMuted = true;
+  video.autoplay = true;
   video.controls = false;
+  video.setAttribute("muted", "");
+  video.setAttribute("autoplay", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "true");
+  video.setAttribute("x5-playsinline", "true");
   video.removeAttribute("controls");
   video.playsInline = true;
-  video.play().catch(() => {});
 };
 
-const creationPreviewObserver = new IntersectionObserver(
+const requestCreationPreviewPlayback = (video) => {
+  if (!activeCreationPreviews.has(video) || document.hidden) return;
+  prepareCreationPreview(video);
+  const playback = video.play();
+  if (playback && typeof playback.catch === "function") {
+    playback.catch(() => video.classList.add("is-preview-waiting"));
+  }
+};
+
+const startCreationPreview = (video) => {
+  activeCreationPreviews.add(video);
+  requestCreationPreviewPlayback(video);
+};
+
+const stopCreationPreview = (video) => {
+  activeCreationPreviews.delete(video);
+  video.pause();
+};
+
+const creationPreviewPreloadObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) prepareCreationPreview(entry.target);
+    });
+  },
+  {
+    root: scroller,
+    rootMargin: "120% 0px",
+    threshold: 0.01,
+  }
+);
+
+const creationPreviewPlaybackObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         startCreationPreview(entry.target);
       } else {
-        entry.target.pause();
+        stopCreationPreview(entry.target);
       }
     });
   },
   {
     root: scroller,
-    rootMargin: "35% 0px",
+    rootMargin: "15% 0px",
     threshold: 0.05,
   }
 );
 
 creationPreviewVideos.forEach((video) => {
-  creationPreviewObserver.observe(video);
-  video.addEventListener("playing", () => video.classList.add("is-preview-playing"));
+  creationPreviewPreloadObserver.observe(video);
+  creationPreviewPlaybackObserver.observe(video);
+  video.addEventListener("playing", () => {
+    video.classList.add("is-preview-playing");
+    video.classList.remove("is-preview-waiting");
+  });
   ["pause", "emptied"].forEach((eventName) => {
     video.addEventListener(eventName, () => video.classList.remove("is-preview-playing"));
   });
-  video.addEventListener("loadeddata", () => {
-    if (!document.hidden) startCreationPreview(video);
+  ["loadeddata", "canplay", "canplaythrough"].forEach((eventName) => {
+    video.addEventListener(eventName, () => requestCreationPreviewPlayback(video));
   });
 });
+
+const resumeActiveCreationPreviews = () => {
+  creationPreviewVideos.forEach((video) => requestCreationPreviewPlayback(video));
+};
 
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {
     creationPreviewVideos.forEach((video) => video.pause());
+  } else {
+    resumeActiveCreationPreviews();
   }
 });
+
+window.addEventListener("pageshow", resumeActiveCreationPreviews);
+document.addEventListener("WeixinJSBridgeReady", resumeActiveCreationPreviews, { once: true });
+document.addEventListener("pointerdown", resumeActiveCreationPreviews, { passive: true });
+document.addEventListener("touchend", resumeActiveCreationPreviews, { passive: true });
 
 const renderMediaDetail = (button) => {
   if (!projectDetailImage) return;
