@@ -28,7 +28,7 @@ const projectDetailGalleries = {
     images: Array.from({ length: 9 }, (_, index) => {
       const number = String(index + 1).padStart(2, "0");
       return {
-        src: `./assets/project-show/01-business-website-design/business-website-preview-${number}.webp`,
+        src: `./assets/project-show/01-business-website-design/business-website-preview-${number}.jpg`,
         width: 1280,
         height: index === 8 ? 867 : 2048,
       };
@@ -39,7 +39,7 @@ const projectDetailGalleries = {
     images: Array.from({ length: 5 }, (_, index) => {
       const number = String(index + 1).padStart(2, "0");
       return {
-        src: `./assets/project-show/02-b2b-design/b2b-design-preview-${number}.webp`,
+        src: `./assets/project-show/02-b2b-design/b2b-design-preview-${number}.jpg`,
         width: 1280,
         height: index === 4 ? 384 : 2048,
       };
@@ -50,7 +50,7 @@ const projectDetailGalleries = {
     images: Array.from({ length: 14 }, (_, index) => {
       const number = String(index + 1).padStart(2, "0");
       return {
-        src: `./assets/project-show/03-mobile-app-design/mobile-app-preview-${number}.webp`,
+        src: `./assets/project-show/03-mobile-app-design/mobile-app-preview-${number}.jpg`,
         width: 1280,
         height: index === 13 ? 1661 : 2048,
       };
@@ -61,7 +61,7 @@ const projectDetailGalleries = {
     images: Array.from({ length: 9 }, (_, index) => {
       const number = String(index + 1).padStart(2, "0");
       return {
-        src: `./assets/project-show/04-aigc-visual-exploration/visual-exploration-preview-${number}.webp`,
+        src: `./assets/project-show/04-aigc-visual-exploration/visual-exploration-preview-${number}.jpg`,
         width: 1280,
         height: index === 8 ? 1307 : 2048,
       };

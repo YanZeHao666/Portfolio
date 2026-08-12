@@ -196,7 +196,7 @@ button {
   transform: scale(1.06);
   background:
     linear-gradient(120deg, rgba(7, 11, 10, 0.38), rgba(7, 11, 10, 0.18)),
-    url("./assets/hero-interactive/hero-background-poster.webp") center / cover no-repeat;
+    url("./assets/hero-interactive/hero-background-poster.jpg") center / cover no-repeat;
 }
 
 .bg-fallback::before {
