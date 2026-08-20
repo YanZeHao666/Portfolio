@@ -545,6 +545,8 @@ const renderMediaDetail = (button) => {
   const label = button.dataset.mediaLabel || button.getAttribute("aria-label") || "Other creation";
   if (!src) return;
 
+  projectDetailModal?.classList.toggle("is-viewport-media", button.dataset.mediaFit === "viewport");
+
   if (type === "video") {
     const video = prepareMediaVideo(button);
     video.setAttribute("aria-label", label);
@@ -583,6 +585,7 @@ const closeProjectDetail = () => {
     video.load();
   });
   projectDetailModal.hidden = true;
+  projectDetailModal.classList.remove("is-viewport-media");
   document.body.classList.remove("project-detail-open");
 };
 

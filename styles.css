@@ -1544,6 +1544,26 @@ button {
   background: #000;
 }
 
+.project-detail-modal.is-viewport-media .project-detail-panel {
+  width: auto;
+  max-width: calc(100vw - 64px);
+  max-height: calc(100dvh - 64px);
+  overflow: hidden;
+}
+
+.project-detail-modal.is-viewport-media .project-detail-image {
+  display: grid;
+  place-items: center;
+}
+
+.project-detail-modal.is-viewport-media .project-detail-image img {
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 64px);
+  max-height: calc(100dvh - 64px);
+  object-fit: contain;
+}
+
 .project-detail-close {
   position: fixed;
   top: 28px;
@@ -2115,6 +2135,12 @@ button.modal-contact {
   .project-detail-panel {
     max-height: calc(100vh - 24px);
     border-radius: 18px;
+  }
+
+  .project-detail-modal.is-viewport-media .project-detail-panel,
+  .project-detail-modal.is-viewport-media .project-detail-image img {
+    max-width: calc(100vw - 24px);
+    max-height: calc(100dvh - 24px);
   }
 
   .project-detail-close {
