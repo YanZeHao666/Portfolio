@@ -1,4 +1,3 @@
-const root = document.documentElement;
 const scroller = document.querySelector("#site-scroll");
 const siteNav = document.querySelector(".site-nav");
 const reveals = document.querySelectorAll(
@@ -13,6 +12,7 @@ const projectDetailImage = projectDetailModal?.querySelector(".project-detail-im
 const backgroundVideo = document.querySelector("[data-video-slot]");
 const ambientBackgroundVideo = document.querySelector("[data-video-ambient]");
 const backgroundVideoContainer = document.querySelector(".bg-video-container");
+const cursorGlow = document.querySelector(".cursor-glow");
 const mobileBackgroundPoster = document.querySelector(".bg-mobile-motion");
 const mobileVideoQuery = window.matchMedia("(max-width: 620px)");
 const characterHeadSprites = Array.from(document.querySelectorAll(".character-head-sprite"));
@@ -100,14 +100,10 @@ const updateBackgroundFrame = () => {
   const lookX = Math.max(-1, Math.min(1, normalizedX * 2));
   const lookY = Math.max(-1, Math.min(1, normalizedY * 2));
 
-  root.style.setProperty("--mx", `${pointerX}px`);
-  root.style.setProperty("--my", `${pointerY}px`);
-  root.style.setProperty("--video-pan-x", `${lookX * -0.45}%`);
-  root.style.setProperty("--video-pan-y", `${lookY * -0.25}%`);
-  root.style.setProperty("--head-shift-x", `${lookX * 1.4}px`);
-  root.style.setProperty("--head-shift-y", `${lookY * 0.8}px`);
-  root.style.setProperty("--body-shift-x", `${lookX * 0.8}px`);
-  root.style.setProperty("--body-shift-y", `${lookY * 0.4}px`);
+  cursorGlow?.style.setProperty("--mx", `${pointerX}px`);
+  cursorGlow?.style.setProperty("--my", `${pointerY}px`);
+  backgroundVideoContainer?.style.setProperty("--video-pan-x", `${lookX * -0.45}%`);
+  backgroundVideoContainer?.style.setProperty("--video-pan-y", `${lookY * -0.25}%`);
 
   const column = lookX < -0.62 ? 0 : lookX < -0.2 ? 1 : lookX <= 0.2 ? 2 : lookX <= 0.62 ? 3 : 4;
   const row = lookY < -0.28 ? 0 : lookY <= 0.28 ? 1 : 2;
@@ -134,6 +130,7 @@ const activeBackgroundVideos = () => [backgroundVideo, ambientBackgroundVideo].f
 );
 
 const tryPlayBackgroundVideos = () => {
+  if (document.hidden) return;
   activeBackgroundVideos().forEach((video) => {
     video.muted = true;
     video.defaultMuted = true;
@@ -154,6 +151,7 @@ const loadMainBackgroundVideo = () => {
 };
 
 const startBackgroundVideos = () => {
+  if (document.hidden) return;
   loadMainBackgroundVideo();
   tryPlayBackgroundVideos();
 };
@@ -189,7 +187,14 @@ backgroundVideo?.addEventListener("canplay", () => {
 
 window.addEventListener("pageshow", startBackgroundVideos);
 document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) startBackgroundVideos();
+  if (document.hidden) {
+    activeBackgroundVideos().forEach((video) => video.pause());
+  } else {
+    startBackgroundVideos();
+  }
+});
+window.addEventListener("pagehide", () => {
+  activeBackgroundVideos().forEach((video) => video.pause());
 });
 document.addEventListener("touchstart", startBackgroundVideos, { once: true, passive: true });
 document.addEventListener("pointerdown", startBackgroundVideos, { once: true, passive: true });
@@ -206,6 +211,7 @@ const revealObserver = new IntersectionObserver(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
       }
     });
   },
@@ -438,6 +444,9 @@ const creationPreviewVideos = [...document.querySelectorAll(".creation-preview-v
 const activeCreationPreviews = new WeakSet();
 
 const prepareCreationPreview = (video) => {
+  // Buffer nearby previews without allowing native autoplay to bypass visibility checks.
+  video.autoplay = false;
+  video.removeAttribute("autoplay");
   if (!video.getAttribute("src") && video.dataset.previewSrc) {
     video.src = video.dataset.previewSrc;
     video.preload = "auto";
@@ -446,10 +455,8 @@ const prepareCreationPreview = (video) => {
   }
   video.muted = true;
   video.defaultMuted = true;
-  video.autoplay = true;
   video.controls = false;
   video.setAttribute("muted", "");
-  video.setAttribute("autoplay", "");
   video.setAttribute("playsinline", "");
   video.setAttribute("webkit-playsinline", "true");
   video.setAttribute("x5-playsinline", "true");
@@ -479,7 +486,10 @@ const stopCreationPreview = (video) => {
 const creationPreviewPreloadObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) prepareCreationPreview(entry.target);
+      if (entry.isIntersecting) {
+        prepareCreationPreview(entry.target);
+        creationPreviewPreloadObserver.unobserve(entry.target);
+      }
     });
   },
   {
@@ -510,6 +520,10 @@ creationPreviewVideos.forEach((video) => {
   creationPreviewPreloadObserver.observe(video);
   creationPreviewPlaybackObserver.observe(video);
   video.addEventListener("playing", () => {
+    if (document.hidden || !activeCreationPreviews.has(video)) {
+      video.pause();
+      return;
+    }
     video.classList.add("is-preview-playing");
     video.classList.remove("is-preview-waiting");
   });
