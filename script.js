@@ -21,6 +21,18 @@ let pointerX = window.innerWidth / 2;
 let pointerY = window.innerHeight * 0.2;
 let activeHeadSpriteIndex = 0;
 let currentHeadFrame = "2-1";
+let isScrolling = false;
+let scrollIdleTimer = null;
+let backgroundReady = false;
+
+// Content must remain readable while this script is downloading or unavailable.
+reveals.forEach((element) => {
+  const bounds = element.getBoundingClientRect();
+  if (bounds.bottom > 0 && bounds.top < window.innerHeight) {
+    element.classList.add("is-visible", "is-initial-content");
+  }
+});
+document.documentElement.classList.add("motion-ready");
 
 const projectDetailGalleries = {
   "business-website": {
@@ -115,9 +127,6 @@ if (ambientBackgroundVideo) {
     ambientBackgroundVideo.pause();
     ambientBackgroundVideo.removeAttribute("src");
     ambientBackgroundVideo.load();
-  } else if (ambientBackgroundVideo.dataset.src) {
-    ambientBackgroundVideo.src = ambientBackgroundVideo.dataset.src;
-    ambientBackgroundVideo.load();
   }
 }
 
@@ -130,7 +139,7 @@ const activeBackgroundVideos = () => [backgroundVideo, ambientBackgroundVideo].f
 );
 
 const tryPlayBackgroundVideos = () => {
-  if (document.hidden) return;
+  if (document.hidden || isScrolling || !backgroundReady) return;
   activeBackgroundVideos().forEach((video) => {
     video.muted = true;
     video.defaultMuted = true;
@@ -151,7 +160,7 @@ const loadMainBackgroundVideo = () => {
 };
 
 const startBackgroundVideos = () => {
-  if (document.hidden) return;
+  if (document.hidden || isScrolling || !backgroundReady) return;
   loadMainBackgroundVideo();
   tryPlayBackgroundVideos();
 };
@@ -163,6 +172,8 @@ const showPlayingBackgroundVideo = () => {
 };
 
 const showAnimatedBackgroundFallback = () => {
+  // Hold the existing frame during scrolling instead of flashing the fallback.
+  if (isScrolling) return;
   backgroundVideo?.classList.remove("is-playing");
   backgroundVideoContainer?.classList.remove("video-is-playing");
 };
@@ -198,11 +209,28 @@ window.addEventListener("pagehide", () => {
 });
 document.addEventListener("touchstart", startBackgroundVideos, { once: true, passive: true });
 document.addEventListener("pointerdown", startBackgroundVideos, { once: true, passive: true });
-window.setTimeout(startBackgroundVideos, mobileVideoQuery.matches ? 900 : 180);
+// Give text, styles and the first paint priority over decorative video downloads.
+window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+  window.setTimeout(() => {
+    backgroundReady = true;
+    startBackgroundVideos();
+  }, 900);
+}));
+
+backgroundVideo?.addEventListener("playing", () => {
+  if (mobileVideoQuery.matches || !ambientBackgroundVideo?.dataset.src) return;
+  const loadAmbient = () => {
+    if (document.hidden || isScrolling || ambientBackgroundVideo.getAttribute("src")) return;
+    ambientBackgroundVideo.src = ambientBackgroundVideo.dataset.src;
+    ambientBackgroundVideo.load();
+  };
+  window.setTimeout(loadAmbient, 1200);
+});
 
 window.addEventListener("mousemove", (event) => {
   pointerX = event.clientX;
   pointerY = event.clientY;
+  if (isScrolling) return;
   scheduleBackgroundFrame();
 });
 
@@ -465,7 +493,7 @@ const prepareCreationPreview = (video) => {
 };
 
 const requestCreationPreviewPlayback = (video) => {
-  if (!activeCreationPreviews.has(video) || document.hidden) return;
+  if (!activeCreationPreviews.has(video) || document.hidden || isScrolling) return;
   prepareCreationPreview(video);
   const playback = video.play();
   if (playback && typeof playback.catch === "function") {
@@ -520,7 +548,7 @@ creationPreviewVideos.forEach((video) => {
   creationPreviewPreloadObserver.observe(video);
   creationPreviewPlaybackObserver.observe(video);
   video.addEventListener("playing", () => {
-    if (document.hidden || !activeCreationPreviews.has(video)) {
+    if (document.hidden || isScrolling || !activeCreationPreviews.has(video)) {
       video.pause();
       return;
     }
@@ -528,7 +556,9 @@ creationPreviewVideos.forEach((video) => {
     video.classList.remove("is-preview-waiting");
   });
   ["pause", "emptied"].forEach((eventName) => {
-    video.addEventListener(eventName, () => video.classList.remove("is-preview-playing"));
+    video.addEventListener(eventName, () => {
+      if (!isScrolling) video.classList.remove("is-preview-playing");
+    });
   });
   ["loadeddata", "canplay", "canplaythrough"].forEach((eventName) => {
     video.addEventListener(eventName, () => requestCreationPreviewPlayback(video));
@@ -538,6 +568,23 @@ creationPreviewVideos.forEach((video) => {
 const resumeActiveCreationPreviews = () => {
   creationPreviewVideos.forEach((video) => requestCreationPreviewPlayback(video));
 };
+
+scroller?.addEventListener("scroll", () => {
+  if (!isScrolling) {
+    isScrolling = true;
+    document.documentElement.classList.add("is-scrolling");
+    activeBackgroundVideos().forEach((video) => video.pause());
+    creationPreviewVideos.forEach((video) => video.pause());
+  }
+  window.clearTimeout(scrollIdleTimer);
+  scrollIdleTimer = window.setTimeout(() => {
+    isScrolling = false;
+    document.documentElement.classList.remove("is-scrolling");
+    startBackgroundVideos();
+    resumeActiveCreationPreviews();
+    scheduleBackgroundFrame();
+  }, 180);
+}, { passive: true });
 
 document.addEventListener("visibilitychange", () => {
   if (document.hidden) {

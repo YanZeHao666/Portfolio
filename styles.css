@@ -1861,6 +1861,25 @@ button.modal-contact {
   }
 }
 
+/* Progressive enhancement: a delayed or failed script must not hide the portfolio. */
+html:not(.motion-ready) :is(.reveal-left, .reveal-right, .reveal-up, .reveal-down, .reveal-fade, .reveal-row, .reveal-zoom, .hero-copy .quote, .hero-copy .role, .hero-copy .hero-actions, .contact-strip > div),
+.is-initial-content,
+.is-initial-content :is(.quote, .role, .hero-actions),
+.contact-strip.is-initial-content > div {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+.is-scrolling .brand::before,
+.is-scrolling .brand-word,
+.is-scrolling .brand-word::before,
+.is-scrolling .brand-word::after {
+  animation-play-state: paused;
+}
+
 @keyframes ring-spin {
   from { transform: translateY(-50%) rotate(0); }
   to { transform: translateY(-50%) rotate(360deg); }
