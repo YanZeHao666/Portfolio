@@ -883,6 +883,10 @@ button {
   padding: 28px;
 }
 
+.profile-media-logo img[alt="OPPO"] {
+  width: 70%;
+}
+
 .empty-media,
 .empty-work {
   color: rgba(255,255,255,.34);
